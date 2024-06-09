@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 
 
+import 'package:application5/pages/community/communityhome.dart';
 import 'package:application5/servicre/database_service.dart';
 
 import 'package:application5/widgets/MyTextField.dart';
@@ -425,7 +426,7 @@ class _CreateCommunityState extends State<CreateCommunity> {
                             backgroundColor: Colors.green,
                           ),
                         );
-                       Get.off(()=>Page);
+                       Get.off(()=>CommunityHome(members: ''));
                       });
                     }
                   },
