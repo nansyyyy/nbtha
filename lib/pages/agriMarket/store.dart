@@ -32,7 +32,7 @@ class Store extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 50),
                 child: Text(
-                          "Categories",
+                          "Categories".tr,
                           style: GoogleFonts.workSans(
                             color: const Color.fromRGBO(24, 79, 39, 1),
                             fontSize: 25,

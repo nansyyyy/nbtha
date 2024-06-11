@@ -1,8 +1,9 @@
 import 'package:application5/controller/cont/cycleController.dart';
-import 'package:application5/widgets/lifecycle_cont.dart';
 import 'package:application5/pages/cycle&tips/lifecycle.dart';
+import 'package:application5/widgets/lifecycle_cont.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Lifecycleee extends StatefulWidget {
   Lifecycleee({super.key});
@@ -35,8 +36,15 @@ class _LifecycleeeState extends State<Lifecycleee>
       backgroundColor: const Color(0xffF1FCF3),
       appBar: AppBar(
         backgroundColor: const Color(0xffF1FCF3),
+        actions:[ TextButton(onPressed: (){},
+        child: Text("Add to my Plants",style: GoogleFonts.workSans(
+                textStyle: TextStyle(
+                  color: Color.fromRGBO(30, 155, 61, 1,)
+                  ,fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Color.fromRGBO(30, 155, 61, 1)),))
         
-      ),
+      ),],),
       body: Column(
         children: [
           // Row(
@@ -101,8 +109,10 @@ class _LifecycleeeState extends State<Lifecycleee>
               children: [
                 // Content for 'My Plants' Tab
                 // Content for 'Reminders' Tab
-                Obx(() {
-                  if(controller.myplant.isEmpty){
+                GetBuilder<CycleController>(
+                  init: CycleController(),
+                  builder: (_){
+                     if(controller.myplant.isEmpty){
                     return const Lifecycle();
                   }else{
 
@@ -118,14 +128,17 @@ class _LifecycleeeState extends State<Lifecycleee>
                           itemCount: controller.myplant.length,
                           itemBuilder: (context, i) {
                             return container_in_life(
-                              img: "${controller.myplant[i]["img"]}",
+                              img: "${controller.myplant[i]["img0"]}",
                               name: "${controller.myplant[i]["name"]}",
                             );
                           }));
-                }}),
+                }
+                }),
                 // Content for 'Reminders' Tab
-                Obx(() {
-                  return Container(
+               GetBuilder<CycleController>(
+                init: CycleController(),
+                builder: (_){
+                 return Container(
                       height: 630,
                       width: 600,
                       decoration: const BoxDecoration(
@@ -136,11 +149,12 @@ class _LifecycleeeState extends State<Lifecycleee>
                           itemCount: controller.myplant.length,
                           itemBuilder: (context, i) {
                             return container_in_life(
-                              img: "${controller.myplant[i]["img"]}",
+                              img: "${controller.myplant[i]["img0"]}",
                               name: "${controller.myplant[i]["name"]}",
                             );
                           }));
-                })
+
+               })
               ],
             ),
           ),

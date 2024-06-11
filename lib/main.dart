@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:application5/controller/cont/cart_controller.dart';
+import 'package:application5/language/lang.dart';
 import 'package:application5/pages/agriMarket/MyOrderss.dart';
 import 'package:application5/pages/agriMarket/Payment_Page.dart';
 import 'package:application5/pages/Porfile_Page2.dart';
@@ -8,19 +9,23 @@ import 'package:application5/pages/agriMarket/cart_page.dart';
 import 'package:application5/pages/agriMarket/checkout.dart';
 import 'package:application5/pages/agriMarket/empty_cart.dart';
 import 'package:application5/pages/community/communityhome.dart';
-import 'package:application5/pages/login.dart';
+import 'package:application5/pages/account/login.dart';
 import 'package:application5/pages/onboarding.dart';
 import 'package:application5/pages/scan.dart';
-import 'package:application5/pages/signup.dart';
+import 'package:application5/pages/account/signup.dart';
 import 'package:application5/pages/splashscreen.dart';
 import 'package:application5/pages/agriMarket/store.dart';
 import 'package:application5/pages/agriMarket/success_page.dart';
+import 'package:application5/uttils/string.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 Future<void> main() async {
+   await GetStorage.init();
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     // name: "flutterapplication4-2d098",
@@ -58,6 +63,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return  GetMaterialApp(
       home: SplashScreen(),
+
+      
+      locale: Locale(GetStorage().read<String>("l").toString()),
+      translations: Localization(),
+      fallbackLocale: Locale(ene),
+
       // BottomBar(selectedIndex: 0,),
       // FirebaseAuth.instance.currentUser != null &&
       //         FirebaseAuth.instance.currentUser!.emailVerified

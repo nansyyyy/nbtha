@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CycleCatWidget extends StatelessWidget {
   const CycleCatWidget({super.key, required this.image, required this.title, required this.onTap});
   final String image;
-  final String title; 
+  final String title;
   final Function() onTap;
 
   @override

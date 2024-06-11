@@ -48,10 +48,10 @@ class _checkoutState extends State<checkout> {
                   ),
                   myTextFromFiled(
                   
-                    hintText: "Building Name",
+                    hintText: "Building Name".tr,
                     validator: (val) {
                       if (val == "") {
-                        return "cant not to empty";
+                        return "cant not to empty".tr;
                       }
                       return null;
                     },
@@ -66,10 +66,10 @@ class _checkoutState extends State<checkout> {
                           width: 170,
                           height: 50,
                           child: myTextFromFiled(
-                            hintText: "Apartment no.",
+                            hintText: "Apartment no.".tr,
                             validator: (val) {
                               if (val == "") {
-                                return "cant not to empty";
+                                return "cant not to empty".tr;
                               }
                               return null;
                             },
@@ -83,10 +83,10 @@ class _checkoutState extends State<checkout> {
                         width: 170,
                         height: 50,
                         child: myTextFromFiled(
-                          hintText: "Floor no.",
+                          hintText: "Floor no.".tr,
                           validator: (val) {
                             if (val == "") {
-                              return "cant not to empty";
+                              return "cant not to empty".tr;
                             }
                             return null;
                           },
@@ -98,10 +98,10 @@ class _checkoutState extends State<checkout> {
                     height: 15,
                   ),
                   myTextFromFiled(
-                    hintText: "Street Name",
+                    hintText: "Street Name".tr,
                     validator: (val) {
                       if (val == "") {
-                        return "cant not to empty";
+                        return "cant not to empty".tr;
                       }
                       return null;
                     },
@@ -110,10 +110,10 @@ class _checkoutState extends State<checkout> {
                     height: 15,
                   ),
                   myTextFromFiled(
-                    hintText: "Additional Direction(Optional)",
+                    hintText: "Additional Direction(Optional)".tr,
                     validator: (val) {
                       if (val == "") {
-                        return "cant not to empty";
+                        return "cant not to empty".tr;
                       }
                       return null;
                     },
@@ -122,7 +122,7 @@ class _checkoutState extends State<checkout> {
                     height: 15,
                   ),
                   PhoneInput(
-                    key: const Key('phone-field'),
+                    key:  Key('phone-field'.tr),
                     controller: null,
                     initialValue: null,
                     shouldFormat: true,
@@ -154,7 +154,7 @@ class _checkoutState extends State<checkout> {
                     height: 200,
                   ),
                   Center(
-                    child: MyButton(lable: "Continue",onPressed: () {
+                    child: MyButton(lable: "Continue".tr,onPressed: () {
                             if (fromstate2.currentState!.validate()) {
                             Get.to(PaymentPage2());
                           }

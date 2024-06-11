@@ -5,14 +5,22 @@ import 'package:application5/widgets/tips_info/cycleInfoContainer.dart';
 import 'package:application5/widgets/myDrawer.dart';
 
 class TopArticleItem extends StatefulWidget {
+ 
+
   const TopArticleItem({
-    Key? key,
+    super.key,
     required this.name,
     required this.article,
-  }) : super(key: key);
+    required  this.date,
+  required this.img,
+  required this.readtime,
+  });
 
   final String name;
   final String article;
+    final String date;
+  final String img;
+  final String readtime;
 
   @override
   _TopArticleItemState createState() => _TopArticleItemState();

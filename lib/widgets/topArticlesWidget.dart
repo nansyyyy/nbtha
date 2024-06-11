@@ -12,6 +12,10 @@ class TopArticleWidget extends StatefulWidget {
 
   final String name;
   final String article;
+  final String date;
+  final String img;
+  final String readtime;
+
 
 
   const TopArticleWidget({
@@ -19,7 +23,7 @@ class TopArticleWidget extends StatefulWidget {
  
     required this.name,
 
-    required this.article,
+    required this.article, required this.date, required this.img, required this.readtime,
 
   });
 
@@ -47,6 +51,9 @@ class _TopArticleWidgetState extends State<TopArticleWidget> {
           name: widget.name,
   
           article: widget.article,
+           date: widget.date,
+            img: widget.img,
+             readtime: widget.readtime,
        
         ));
       },
@@ -64,8 +71,8 @@ class _TopArticleWidgetState extends State<TopArticleWidget> {
               height: 52,
               width: 56,
               decoration: BoxDecoration(
-                image: const DecorationImage(
-                    image: AssetImage("images/1.png"), fit: BoxFit.cover),
+                image:  DecorationImage(
+                    image: NetworkImage(widget.img), fit: BoxFit.cover),
                 borderRadius: BorderRadius.circular(6),
               ),
             ),

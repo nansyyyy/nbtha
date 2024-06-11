@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
                         fontWeight: FontWeight.w600),
                   ),
                   TextSpan(
-                    text: "\nFind Your Desire Agriculture\nSolution.",
+                    text: "\nFind Your Desire Agriculture\nSolution.".tr,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 21,
@@ -102,7 +102,7 @@ class HomePage extends StatelessWidget {
                                               "images/Home_Scan_Button.png"))),
                                 ),
                                 Text(
-                                  "Detect your plant Disease",
+                                  "Detect your plant Disease".tr,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 15,
@@ -140,7 +140,7 @@ class HomePage extends StatelessWidget {
                                     ),
                                     RichText(
                                         text: TextSpan(
-                                            text: "Tips & Information",
+                                            text: "Tips & Information".tr,
                                             style: TextStyle(
                                               color: Color(0xff1B602D),
                                               fontFamily: "WorkSans",
@@ -148,10 +148,10 @@ class HomePage extends StatelessWidget {
                                               fontWeight: FontWeight.w500,
                                               letterSpacing: -0.24,
                                             ),
-                                            children: const <TextSpan>[
+                                            children:  <TextSpan>[
                                           TextSpan(
                                             text:
-                                                "\nCultivating with expertise and \ndistinction.",
+                                                "\nCultivating with expertise and \ndistinction.".tr,
                                             style: TextStyle(
                                               color: Color(0xff4F795B),
                                               fontSize: 18,
@@ -185,7 +185,7 @@ class HomePage extends StatelessWidget {
                                     ),
                                     RichText(
                                         text: TextSpan(
-                                            text: "Community",
+                                            text: "Community".tr,
                                             style: TextStyle(
                                               color: Color(0xff1B602D),
                                               fontFamily: "WorkSans",
@@ -193,10 +193,10 @@ class HomePage extends StatelessWidget {
                                               fontWeight: FontWeight.w500,
                                               letterSpacing: -0.24,
                                             ),
-                                            children: const <TextSpan>[
+                                            children:  <TextSpan>[
                                           TextSpan(
                                             text:
-                                                "\nAsk questions and get support.",
+                                                "\nAsk questions and get support.".tr,
                                             style: TextStyle(
                                               color: Color(0xff4F795B),
                                               fontSize: 18,
@@ -224,7 +224,7 @@ class HomePage extends StatelessWidget {
                                     children: [
                                       RichText(
                                           text: TextSpan(
-                                              text: "Plant Life Cycle",
+                                              text: "Plant Life Cycle".tr,
                                               
                                               style: TextStyle(
       
@@ -233,10 +233,10 @@ class HomePage extends StatelessWidget {
                                                 fontSize: 28,
                                                 letterSpacing: -0.24,
                                               ),
-                                              children: const <TextSpan>[
+                                              children:  <TextSpan>[
                                             TextSpan(
                                               text:
-                                                  "\nTake step to start \nplanting.",
+                                                  "\nTake step to start \nplanting.".tr,
                                               style: TextStyle(
                                                 fontFamily: "WorkSans",
                                                 color: Color(0xff4F795B),
@@ -287,21 +287,21 @@ class HomePage extends StatelessWidget {
                                   RichText(
                                       text: TextSpan(
                                           text:
-                                              "Get 10% off\non your\nfirst order ",
+                                              "Get 10% off\non your\nfirst order ".tr,
                                           style: TextStyle(
                                             wordSpacing: -1,
                                             color: Color(0xff1A7431),
                                             fontFamily: "worksansbold",
-                                            fontSize: 28,
+                                            fontSize: 20,
                                             letterSpacing: -0.24,
                                           ),
-                                          children: const <TextSpan>[
+                                          children:  <TextSpan>[
                                         TextSpan(
-                                          text: "\nAgriMarket",
+                                          text: "\nAgriMarket".tr,
                                           style: TextStyle(
                                             fontFamily: "WorkSans",
                                             color: Color(0xff1E9B3D),
-                                            fontSize: 26,
+                                            fontSize: 20,
                                           ),
                                         ),
                                       ])),

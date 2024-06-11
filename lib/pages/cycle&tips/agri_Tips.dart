@@ -82,8 +82,8 @@ class AgryCycle extends StatelessWidget {
                     ),
                     Container(
                       padding: const EdgeInsets.only(left: 35),
-                      child: const Text(
-                        "Top Articles",
+                      child:  Text(
+                        "Top Articles".tr,
                         style: TextStyle(
                           color: Color(0xff1A7431),
                           fontFamily: "WorkSans",
@@ -113,12 +113,16 @@ class AgryCycle extends StatelessWidget {
                         return ListView.builder(
                             itemCount: controller.topArticlesList.length,
                             itemBuilder: (constex, i) {
+                              String name = "${controller.topArticlesList[i]["name"]}";
                               return TopArticleWidget(
                             
-                                name: "${controller.topArticlesList[i]["name"]}",
+                                name: name.tr,
                               
                                 article:
-                                    '${controller.topArticlesList[i]["article"]}',
+                                    '${controller.topArticlesList[i]["article"]}', 
+                                    date:  '${controller.topArticlesList[i]["date"].toString()}', 
+                                    readtime:  '${controller.topArticlesList[i]["readtime"]}',
+                                     img:  '${controller.topArticlesList[i]["img"].toString()}',
                                
                               );
                             });

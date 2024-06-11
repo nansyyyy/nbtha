@@ -236,9 +236,13 @@ Widget build(BuildContext context) {
           color: Color.fromRGBO(79, 121, 91, 1),
         ),
       ),
-      leading: Icon(Icons.arrow_back_ios,
-      color: Color.fromRGBO(26, 116, 49, 1),
-      size: 19,),
+      leading: IconButton( icon : Icon(Icons.arrow_back_ios),
+      onPressed: () {
+        Get.off(()=> CommunityHome(members: ''));
+              color: Color.fromRGBO(26, 116, 49, 1);
+      }
+
+      ),
       actions: [
   
         InkWell(

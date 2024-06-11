@@ -1,6 +1,3 @@
-
-// ignore_for_file: prefer_const_constructors
-
 import 'package:application5/model/model_onboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
