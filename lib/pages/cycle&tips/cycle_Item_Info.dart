@@ -15,10 +15,11 @@ class CycleItem extends StatelessWidget {
     required this.harvesting,
     required this.timing,
     required this.watering,
-    required this.steps,
+    required this.steps, required this.image1,
   }) : super(key: key);
 
   final String image;
+    final String image1;
   final String name;
   final String cat;
     final String weather;

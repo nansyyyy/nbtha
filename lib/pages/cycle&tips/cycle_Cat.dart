@@ -18,7 +18,7 @@ class CategoryPage extends StatelessWidget {
     try {
       await auth.signOut();
       await googleSignIn.signOut();
-      Get.off(const LoginPage());
+      Get.off(()=> LoginPage());
       // Navigator.of(context).pushNamedAndRemoveUntil("login", (route) => false);
     } catch (error) {}
   }
@@ -145,7 +145,8 @@ class CategoryPage extends StatelessWidget {
                           alignment: const Alignment(0.94, 0.88),
                           children: [
                             CycleItemWidget(
-                              image: "${categoryList[i]["img"]}",
+                              image: "${categoryList[i]["img0"]}",
+                                  image1: "${categoryList[i]["img1"]}",
                               name: "${categoryList[i]["name"]}",
                               cat: "${categoryList[i]["cat"]}",
                               afterCaring: "${categoryList[i]["After Caring"]}",

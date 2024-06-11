@@ -44,11 +44,20 @@ class _ModelHomeState extends State<ModelHome> {
   Future<void> _pickImage(ImageSource source) async {
     try {
       final XFile? image = await _picker.pickImage(source: source);
-      setState(() {
-        _image = image;
-        file = File(image!.path);
-      });
-      detectImage(file!);
+      if (image != null) {
+        setState(() {
+          _image = image;
+          file = File(image.path);
+        });
+        await detectImage(file!);
+        // Navigate to the results page
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ResultsPage(image: file!, results: v),
+          ),
+        );
+      }
     } catch (e) {
       print('Error picking image: $e');
     }
@@ -66,13 +75,6 @@ class _ModelHomeState extends State<ModelHome> {
     setState(() {
       _recognitions = recognitions;
       v = recognitions.toString();
-      // Navigate to the results page
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ResultsPage(image: file!, results: v),
-        ),
-      );
     });
 
     print(_recognitions);
@@ -149,43 +151,35 @@ class _ModelHomeState extends State<ModelHome> {
                       SizedBox(height: 70),
                       Column(
                         children: <Widget>[
-                          if (_image != null)
-                            Image.file(
-                              File(_image!.path),
-                              height: 200,
-                              width: 200,
-                              fit: BoxFit.cover,
-                            )
-                          else
-                            Center(
-                              child: Container(
-                                child: MaterialButton(
-                                  onPressed: () => _pickImage(ImageSource.camera), // Call _pickImage with camera source
-                                  height: 45,
-                                  minWidth: 274,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  color: const Color(0xff1b602d),
-                                  child: Text(
-                                    "Scan your plant",
-                                    style: GoogleFonts.workSans(
-                                      textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                          Center(
+                            child: Container(
+                              child: MaterialButton(
+                                onPressed: () => _pickImage(ImageSource.camera),
+                                height: 45,
+                                minWidth: 274,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                color: const Color(0xff1b602d),
+                                child: Text(
+                                  "Scan your plant",
+                                  style: GoogleFonts.workSans(
+                                    textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ),
                               ),
                             ),
+                          ),
                         ],
                       ),
                       SizedBox(height: 20),
                       Center(
                         child: Container(
                           child: MaterialButton(
-                            onPressed: () => _pickImage(ImageSource.gallery), // Call _pickImage with gallery source
+                            onPressed: () => _pickImage(ImageSource.gallery),
                             height: 45,
                             minWidth: 274,
                             shape: RoundedRectangleBorder(
@@ -204,7 +198,6 @@ class _ModelHomeState extends State<ModelHome> {
                           ),
                         ),
                       ),
-                      Text(v),
                     ],
                   ),
                 ),

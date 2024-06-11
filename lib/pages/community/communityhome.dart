@@ -7,9 +7,11 @@ import 'package:application5/servicre/auth_service.dart';
 
 import 'package:application5/servicre/database_service.dart';
 
+
 import 'package:application5/widgets/community/communityedit.dart';
 import 'package:application5/widgets/community/group_tile.dart';
 import 'package:application5/widgets/community/screen&snack.dart';
+import 'package:application5/widgets/myDrawer.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -58,12 +60,15 @@ String getName(String res){
 }
 
 
-gettingUserData()async{
-await HelperFunction.getUserEmailFromSF().then((value) {
-  setState(() {
-    email =value!;
-  });
-});
+Future<void> gettingUserData() async {
+  String? userEmail = await HelperFunction.getUserEmailFromSF();
+  if (userEmail != null) {
+    setState(() {
+      email = userEmail!;
+    });
+  
+  }
+
 
 // await HelperFunction.getUserNameFromSF().then((value) {
 //   setState(() {
@@ -88,6 +93,7 @@ await DatabaseService(uid:FirebaseAuth.instance.currentUser!.uid)
   Widget build(BuildContext context) {
     return Scaffold(
      appBar: AppBar(
+      
         backgroundColor: const Color.fromRGBO(241, 252, 243, 1),
         toolbarHeight: 70,
     
@@ -121,85 +127,8 @@ await DatabaseService(uid:FirebaseAuth.instance.currentUser!.uid)
           )
         ],
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: const EdgeInsets.symmetric(vertical: 50),
-          children: <Widget>[
-
-           
-            Icon(Icons.account_circle,
-            size: 150,
-            color: Colors.grey[700],),
-            const SizedBox(height:15 ,),
-
-            Text(userName,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontWeight: FontWeight.bold),),
-
-            const SizedBox(height: 30,),
-            const Divider(height: 2,),
-
-            ListTile(
-              onTap: (){},
-              selectedColor: Colors.green,
-              selected: true,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-              leading: const Icon(Icons.group),
-              title: const Text("Groups",
-              style: TextStyle(color: Colors.black),),
-            ),
-
-             ListTile(
-              onTap: (){
-          nextScreenReplace(context, ProfilePage(email: email, userName: userName));
-              },
-              selectedColor: Colors.green,
-              selected: true,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-              leading: const Icon(Icons.group),
-              title: const Text("Profile",
-              style: TextStyle(color: Colors.black),),
-            ),
-
-             ListTile(
-              onTap: ()async{
-                showDialog(
-                  barrierDismissible: false,
-                  context: context,
-                 builder: (context){
-                  return AlertDialog(
-                    title:const Text("Logout") ,
-                    content: const Text("are you sure you want to LogOut?"),
-                    actions: [
-                      IconButton(onPressed: (){
-                        Navigator.pop(context);
-                      }, 
-                      icon: const Icon(Icons.cancel,
-                      color: Colors.red,)),
-
-                      IconButton(onPressed: ()async{
-                        await authService.signOut();
-                        Navigator.of(context).pushAndRemoveUntil (MaterialPageRoute(builder: (context) => const LoginPage()), 
-                        (route) =>   true);                 
-                      }, 
-                      icon: const Icon(Icons.done,
-                      color: Colors.green,))
-                    ],
-                  );
-                 }) ;
-              
-              },
-              selectedColor: Colors.green,
-              selected: true,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-              leading: const Icon(Icons.exit_to_app),
-              title: const Text("LogOut",
-              style: TextStyle(color: Colors.black),),
-            ),
-            
-          ],
-        ),
-      ),
+      drawer: Mydrawer(),
+       
 
       body:
       Column(

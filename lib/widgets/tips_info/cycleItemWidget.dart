@@ -1,3 +1,4 @@
+import 'package:application5/controller/cont/cycleController.dart';
 import 'package:application5/pages/cycle&tips/cycle_Item_Info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,6 +6,8 @@ import 'package:get/get_core/src/get_main.dart';
 
 class CycleItemWidget extends StatelessWidget {
   final String image;
+    final String image1;
+
   final String name;
   final String cat;
   final String weather;
@@ -15,7 +18,7 @@ class CycleItemWidget extends StatelessWidget {
   final String timing;
   final String watering;
 
-  const CycleItemWidget({
+   CycleItemWidget({
     super.key,
     required this.image,
     required this.name,
@@ -25,9 +28,9 @@ class CycleItemWidget extends StatelessWidget {
     required this.harvesting,
     required this.steps,
     required this.timing,
-    required this.watering, required this.weather,
+    required this.watering, required this.weather, required this.image1,
   });
-
+  final controller = Get.put(CycleController());
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -89,18 +92,9 @@ class CycleItemWidget extends StatelessWidget {
                     child: Container(
                       
                       child: TextButton(
-                        onPressed: (){Get.to(CycleItem(
-                                      afterCaring: afterCaring,
-                                      conditions: conditions,
-                                      harvesting: harvesting,
-                                      weather:weather,
-                                      image: image,
-                                      watering: watering,
-                                      steps: steps,
-                                      timing: timing,
-                                      name: name,
-                                      cat: cat,
-                                    ));},
+                        onPressed: (){
+                     controller.getMyplant();
+                        },
                       child: Text("Add To Your Plants",
                         style: TextStyle(
                             color: Color(0xff1B602D),
@@ -112,7 +106,7 @@ class CycleItemWidget extends StatelessWidget {
                   ),
 
                         Container(
-                          width: 116,
+                          width: 90,
               height: 40,
               decoration: BoxDecoration(
                   // color: Colors.black,
@@ -125,6 +119,7 @@ class CycleItemWidget extends StatelessWidget {
                                           harvesting: harvesting,
                                           weather:weather,
                                           image: image,
+                                          image1: image1,
                                           watering: watering,
                                           steps: steps,
                                           timing: timing,

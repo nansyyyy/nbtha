@@ -60,6 +60,11 @@ dependencies:
   intl: ^0.18.1
   tflite_v2: ^1.0.0
 
+  audioplayers: ^6.0.0
+  sizer: ^2.0.15
+  provider: ^6.1.2
+  file: ^7.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

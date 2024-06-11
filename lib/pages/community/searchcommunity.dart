@@ -3,10 +3,9 @@ import 'package:application5/pages/community/chatpage.dart';
 import 'package:application5/servicre/database_service.dart';
 import 'package:application5/widgets/community/screen&snack.dart';
 
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:flutter/material.dart';
 
 
 

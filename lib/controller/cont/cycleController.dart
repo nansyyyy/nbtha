@@ -3,10 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class CycleController extends GetxController {
-  late String name;
   var informationList = [].obs;
   var topArticlesList = [].obs;
-  List<DocumentSnapshot> myplant = [];
+  var myplant = [].obs;
+  late String uid;  // No need to initialize this here
 
   @override
   void onInit() {
@@ -19,13 +19,13 @@ class CycleController extends GetxController {
   void getTipsAndInformation() async {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection("TipsAndInformation").get();
-    informationList.addAll(querySnapshot.docs);
+    informationList.assignAll(querySnapshot.docs);
   }
 
   void getTopArticles() async {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection("TopArticles").get();
-    topArticlesList.addAll(querySnapshot.docs);
+    topArticlesList.assignAll(querySnapshot.docs);
   }
 
   Future<bool> fetchFavoriteState(String articleName) async {
@@ -69,66 +69,39 @@ class CycleController extends GetxController {
     }
   }
 
-  // final myplanet = [].obs;
-  // void getMyplant() async {
-  //   QuerySnapshot querySnapshot =
-  //       await FirebaseFirestore.instance.collection("TipsAndInformation").get();
-  //   myplanet.addAll(querySnapshot.docs);
-  // }
+  Future<void> getMyplant() async {
+    try {
+      // Fetch documents from TipsAndInformation collection
+      QuerySnapshot querySnapshot =
+          await FirebaseFirestore.instance.collection("TipsAndInformation").get();
+      
+      // Add fetched documents to myplant list
+      myplant.assignAll(querySnapshot.docs);
+      
+      // Get the current user's ID
+      uid = FirebaseAuth.instance.currentUser!.uid;
 
+      // Reference to the user's document in the users collection
+      DocumentReference userDoc = FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid);
 
+      // Create a list to hold the tips data
+      List<Map<String, dynamic>> tipsData = [];
 
+      // Extract data from each document and add to the tipsData list
+      for (var doc in myplant) {
+        tipsData.add(doc.data() as Map<String, dynamic>);
+      }
 
-
-Future<void> getMyplant() async {
-  try {
-    // Fetch documents from TipsAndInformation collection
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection("TipsAndInformation").get();
-    
-    // Add fetched documents to myplant list
-    myplant.addAll(querySnapshot.docs);
-    
-    // Get the current user's ID
-    String uid = FirebaseAuth.instance.currentUser!.uid;
-
-    // Reference to the user's document in the users collection
-    DocumentReference userDocumentReference = FirebaseFirestore.instance
-        .collection('users')
-        .doc(uid);
-
-    // Create a list to hold the tips data
-    List<Map<String, dynamic>> tipsData = [];
-
-    // Extract data from each document and add to the tipsData list
-    for (var doc in myplant) {
-      tipsData.add(doc.data() as Map<String, dynamic>);
-    }
-
-    // Add the tips data to the myplant field in the user's document
-    await userDocumentReference.update({
-      'myplant': FieldValue.arrayUnion(tipsData),
-    });
-
-    print('Tips added to myplant successfully');
-  } catch (e) {
-    print('Error adding tips to myplant: $e');
-  }
-}
-Stream<List<Map<String, dynamic>>> getPlants() {
-  String uid = FirebaseAuth.instance.currentUser!.uid;
-  return FirebaseFirestore.instance
-      .collection('users')
-      .doc(uid)
-      .snapshots()
-      .map((snapshot) {
-        if (snapshot.exists && snapshot.data()!.containsKey('myplant')) {
-          List<dynamic> myplants = snapshot.data()!['myplant'];
-          return myplants.cast<Map<String, dynamic>>().toList();
-        } else {
-          return [];
-        }
+      // Add the tips data to the myplant field in the user's document
+      await userDoc.update({
+        'myplant': FieldValue.arrayUnion(tipsData)
       });
-}
 
+      print('Tips added to myplant successfully');
+    } catch (e) {
+      print('Error adding tips to myplant: $e');
+    }
+  }
 }

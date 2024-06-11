@@ -4,8 +4,8 @@ import 'package:application5/pages/community/communityhome.dart';
 
 import 'package:application5/servicre/database_service.dart';
 import 'package:application5/widgets/community/message_tile.dart';
-import 'package:application5/widgets/community/screen&snack.dart';
 
+import 'package:application5/widgets/community/screen&snack.dart';
 import 'package:application5/widgets/community/wallpaperGroup.dart';
 import 'package:flutter/widgets.dart'; // Importing BuildContext from the correct package
 
@@ -236,15 +236,9 @@ Widget build(BuildContext context) {
           color: Color.fromRGBO(79, 121, 91, 1),
         ),
       ),
-      leading:
-
-      IconButton(
-        onPressed: (){
-          Get.off(()=> CommunityHome(members: ''));
-        },
-      icon:  Icon(Icons.arrow_back_ios,   size: 19,) ,
+      leading: Icon(Icons.arrow_back_ios,
       color: Color.fromRGBO(26, 116, 49, 1),
-    ),
+      size: 19,),
       actions: [
   
         InkWell(
@@ -581,72 +575,79 @@ InkWell(
             left: 0,
             right: 0,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+              padding: const EdgeInsets.symmetric(horizontal:10, vertical: 16),
               color: Colors.white,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                   IconButton(
-                    onPressed: () {
-                      showSendImageBottomSheet(context);
-                    },
-                    icon:  Icon(Icons.add,
-                   fill: CircularProgressIndicator.strokeAlignOutside,
+                  //  IconButton(
+                  //   onPressed: () {
+                  //     showSendImageBottomSheet(context);
+                  //   },
+                  //   icon:  Icon(Icons.add,
+                  //  fill: CircularProgressIndicator.strokeAlignOutside,
                  
-                    ),
-                  ),
+                  //   ),
+                  // ),
                   Expanded(
-                    child: TextFormField(
-                      onTapOutside: (event) => FocusScope.of(context).unfocus(),
-                      keyboardType: TextInputType.text,
-                      controller: messageController,
-                      decoration: InputDecoration(
+                    
+                    child: Container(
+                      width: 360,
+                      height: 45,
+                      child: TextFormField(
                         
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(40),
-                          borderSide: const BorderSide(
-                            color: Color.fromRGBO(199, 201, 198, 1),
-                            width: 1,
+                        onTapOutside: (event) => FocusScope.of(context).unfocus(),
+                        keyboardType: TextInputType.text,
+                        controller: messageController,
+                        decoration: InputDecoration(
+                          
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(40),
+                            borderSide: const BorderSide(
+                              color: Color.fromRGBO(199, 201, 198, 1),
+                              width: 1,
+                            ),
                           ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          fillColor: Colors.white,
+                          filled: true,
+                          hintText: "Type your message....",
+                          hintStyle: const TextStyle(
+                            color: Color.fromRGBO(104, 106, 138, 1),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "WorkSans",
+                          ),
+                          border: InputBorder.none,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        fillColor: Colors.white,
-                        filled: true,
-                        hintText: "Type your message....",
-                        hintStyle: const TextStyle(
-                          color: Color.fromRGBO(104, 106, 138, 1),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "WorkSans",
-                        ),
-                        border: InputBorder.none,
                       ),
                     ),
                   ),
-                  messageController.text.isEmpty
-                      ? CircleAvatar(
-                          backgroundColor: Colors.green,
-                          child: IconButton(
-                            onPressed: () {
-                              if (!widget.is_recording) {
-                                // startRecording();
-                              } else {
-                                // stopRecording();
-                              }
-                            },
-                            icon: widget.is_recording ? const Icon(Icons.stop) : const Icon(Icons.mic),
-                          ),
-                        )
-                      : CircleAvatar(
-                        backgroundColor: Colors.green,
-                        child: IconButton(
+                  // messageController.text.isEmpty
+                  //     ? CircleAvatar(
+                  //         backgroundColor: Colors.green,
+                  //         child: IconButton(
+                  //           onPressed: () {
+                  //             if (!widget.is_recording) {
+                  //               // startRecording();
+                  //             } else {
+                  //               // stopRecording();
+                  //             }
+                  //           },
+                  //           icon: widget.is_recording ? const Icon(Icons.stop) : const Icon(Icons.mic),
+                  //         ),
+                  //       )
+                  //     : CircleAvatar(
+                        // backgroundColor: Colors.green,
+                      IconButton(
                           onPressed: () {
                             sendMessage();
                           },
-                          icon: const Icon(Icons.send),
+                          icon:  Image.asset("images/send.png"),
                         ),
-                      ),
+                      
                  
                 ],
               ),
